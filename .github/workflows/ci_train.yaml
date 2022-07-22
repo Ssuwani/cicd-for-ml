@@ -21,6 +21,8 @@ jobs:
           registry: ghcr.io
           path: .
           dockerfile: Dockerfile
+          username: ${{ github.actor }}
+          password: ${{ github.token }}
           push: true
           tags: |
             ghcr.io/ssuwani/iris_train:latest
