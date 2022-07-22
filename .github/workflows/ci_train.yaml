@@ -5,6 +5,8 @@ on: push
 env:
   REGISTRY: ghcr.io
   IMAGE_NAME: iris_train
+  IMAGE: ${{ env.REGISTRY }}/${{ github.actor }}/${{ env.IMAGE_NAME }}:${{ GITHUB_SHA::6 }}
+  DIR: .
 
 jobs:
   build:
@@ -13,14 +15,13 @@ jobs:
       - name: checkout repository
         uses: actions/checkout@v3
 
-      - name: docker version check
-        run: docker --version
-
       - name: Docker Build
-        run: echo docker build
+        run: |
+          docker build -t ${{ env.IMAGE }} ${{ env.DIR }}
 
       - name: Docker Push
-        run: echo docker push
+        run: |
+          docker push ${{ env.IMAGE }}
 
       - name: Update Version
         run: echo update version
