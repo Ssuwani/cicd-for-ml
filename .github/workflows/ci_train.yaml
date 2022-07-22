@@ -2,12 +2,19 @@ name: CI for Train
 
 on: push
 
+env:
+  REGISTRY: ghcr.io
+  IMAGE_NAME: iris_train
+
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
       - name: checkout repository
         uses: actions/checkout@v3
+
+      - name: docker version check
+        run: docker --version
 
       - name: Docker Build
         run: echo docker build
