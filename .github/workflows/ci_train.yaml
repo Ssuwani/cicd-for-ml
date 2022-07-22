@@ -1,4 +1,4 @@
-name: CI
+name: CI for Train
 
 on: push
 
@@ -6,7 +6,8 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
+      - name: checkout repository
+        uses: actions/checkout@v3
 
       - name: Docker Build
         run: echo docker build
