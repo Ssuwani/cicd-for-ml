@@ -19,12 +19,12 @@ jobs:
         uses: docker/build-push-action@v3.1.0
         with:
           registry: ghcr.io
-          repository: ${{ env.IMAGE_NAME }}/iris_train
-          username: ${{ github.actor }}
-          password: ${{ github.token }}
           path: .
           dockerfile: Dockerfile
           push: true
+          tags: |
+            ghcr.io/ssuwani/iris_train:latest
+            ghcr.io/ssuwani/iris_train:v1
 
       - name: Update Version
         run: echo update version
