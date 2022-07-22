@@ -11,7 +11,7 @@ jobs:
   build:
     runs-on: ubuntu-latest
     env:
-      IMAGE: $REGISTRY/${{ github.actor }}/$IMAGE_NAME:${{ GITHUB_SHA::6 }}
+      IMAGE: $REGISTRY/${{ github.actor }}/$IMAGE_NAME:$GITHUB_SHA::6
     steps:
       - name: checkout repository
         uses: actions/checkout@v3
