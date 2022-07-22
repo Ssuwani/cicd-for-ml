@@ -24,6 +24,7 @@ jobs:
           password: ${{ github.token }}
           path: .
           dockerfile: Dockerfile
+          push: true
 
       - name: Update Version
         run: echo update version
