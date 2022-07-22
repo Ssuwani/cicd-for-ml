@@ -10,18 +10,20 @@ env:
 jobs:
   build:
     runs-on: ubuntu-latest
-    env:
-      IMAGE: "$REGISTRY/${{ github.actor }}/$IMAGE_NAME"
+
     steps:
       - name: checkout repository
         uses: actions/checkout@v3
 
-      - name: Docker Build
-        run: |
-          docker build -t $IMAGE $DIR
-      - name: Docker Push
-        run: |
-          docker push $IMAGE
+      - name: Build and push Docker images
+        uses: docker/build-push-action@v3.1.0
+        with:
+          registry: ghcr.io
+          repository: ${{ env.IMAGE_NAME }}/iris_train
+          username: ${{ github.actor }}
+          password: ${{ github.token }}
+          path: .
+          dockerfile: Dockerfile
 
       - name: Update Version
         run: echo update version
