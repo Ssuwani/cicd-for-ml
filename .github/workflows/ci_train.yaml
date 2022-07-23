@@ -15,14 +15,19 @@ jobs:
       - name: checkout repository
         uses: actions/checkout@v3
 
+
+      - name: Docker Login
+        uses: docker/login-action@v2.0.0
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
       - name: Build and push Docker images
         uses: docker/build-push-action@v3.1.0
         with:
-          registry: ghcr.io
           path: .
           dockerfile: Dockerfile
-          username: ${{ github.actor }}
-          password: ${{ github.token }}
           push: true
           tags: |
             ghcr.io/ssuwani/iris_train:latest
