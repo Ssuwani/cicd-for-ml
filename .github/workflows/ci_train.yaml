@@ -35,7 +35,7 @@ jobs:
             ${{ env.IMAGE }}:${{ github.sha }}
 #            ghcr.io/ssuwani/iris_train:latest
 #            ghcr.io/ssuwani/iris_train:${{ github.sha }}
-          env:
-            IMAGE: ${{ env.REGISTRY }}/${{ env.USERNAME }}/${{ env.IMAGE_NAME }}
+        env:
+          IMAGE: ${{ env.REGISTRY }}/${{ env.USERNAME }}/${{ env.IMAGE_NAME }}
       - name: Update Version
         run: echo update version
