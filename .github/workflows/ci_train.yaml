@@ -3,9 +3,11 @@ name: CI for Train
 on: push
 
 env:
+  USERNAME: ssuwani
   REGISTRY: ghcr.io
   IMAGE_NAME: iris_train
   DIR: .
+
 
 jobs:
   build:
@@ -29,8 +31,10 @@ jobs:
           dockerfile: Dockerfile
           push: true
           tags: |
-            ghcr.io/ssuwani/iris_train:latest
-            ghcr.io/ssuwani/iris_train:${{ github.sha }}
+            $REGISTRY/$USERNAME/$IMAGE_NAME:latest
+            $REGISTRY/$USERNAME/$IMAGE_NAME:${{ github.sha }}
+#            ghcr.io/ssuwani/iris_train:latest
+#            ghcr.io/ssuwani/iris_train:${{ github.sha }}
 
       - name: Update Version
         run: echo update version
