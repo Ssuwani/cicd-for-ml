@@ -17,7 +17,5 @@ clf.fit(train_x, train_y)
 
 # Model Evaluate
 pred_y = clf.predict(test_x)
-print(pred_y[:10])
-print(test_y[:10])
 test_acc = accuracy_score(pred_y, test_y)
 print(f"test accuracy: {test_acc:.4f}")
