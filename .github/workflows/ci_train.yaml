@@ -17,12 +17,12 @@ jobs:
       - name: checkout repository
         uses: actions/checkout@v3
 
-      - name: Docker Login
-        uses: docker/login-action@v2.0.0
-        with:
-          registry: ghcr.io
-          username: ${{ github.actor }}
-          password: ${{ secrets.GITHUB_TOKEN }}
+#      - name: Docker Login
+#        uses: docker/login-action@v2.0.0
+#        with:
+#          registry: ghcr.io
+#          username: ${{ github.actor }}
+#          password: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Build and push Docker images
         uses: docker/build-push-action@v3.1.0
@@ -33,8 +33,6 @@ jobs:
           tags: |
             ${{ env.IMAGE }}:latest
             ${{ env.IMAGE }}:${{ github.sha }}
-#            ghcr.io/ssuwani/iris_train:latest
-#            ghcr.io/ssuwani/iris_train:${{ github.sha }}
         env:
           IMAGE: ${{ env.REGISTRY }}/${{ env.USERNAME }}/${{ env.IMAGE_NAME }}
       - name: Update Version
